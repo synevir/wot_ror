@@ -1,0 +1,59 @@
+<p> The current date is <%= Time.now.strftime("%Y-%m-%d") %> | StaticPages#home</p>
+<table id="header_table">
+  <tr>
+    <td> <%= image_tag('type59.png') %> </td>
+    <td id="i18n">
+      <a href="/index.php?&lang=eng"><%= image_tag('eng.gif') %></a>
+	  &nbsp;
+	  <a href="/index.php?&lang=rus"><%= image_tag('rus.gif') %></a>
+    </td>
+
+  </tr>
+</table>
+
+
+<hr />
+<p>
+  Что это за сайт, что за цифры и зачем все это нужно  =>
+  <a href="<%= static_pages_about_path %>">  ccылка </a>
+</p>
+<p>
+  На этой странице представлена таблица доходности всей техники игры
+  "World of Tanks". Любителям танковых сражений эта таблица поможет проанализировать различные показатели
+  боевых машин и целесообразность преобретения той или иной машины, в зависимости от целей, которые поставил себе
+  игрок
+</p>
+<hr />
+
+<% countries = ['CCCP', 'Германия', 'Франция', 'Китай', 'Япония', 'all'] %>
+<% levels = (1..10).to_a.push('all') %>
+<% panzer_types  = ['lt', 'st', 'tt', 'pt', 'sau', 'all'] %>
+<% sort_order    = ['Asc', 'Desc'] %>
+<% rows_limit    = [10, 20, 40]    %>
+
+
+<%= form_tag root_path, :method => 'get' do %>
+  <%= render 'filters_table'  %>
+  <hr />
+  <div class="spoil">
+    <div class="smallfont">
+      <input type="button" value="Выбор колонок для вывода" class="input-button" id ="btn_spoiler"
+         onclick=
+          "if (this.parentNode.parentNode.getElementsByTagName('div')[1].getElementsByTagName('div')[0].style.display != '')
+              { this.parentNode.parentNode.getElementsByTagName('div')[1].getElementsByTagName('div')[0].style.display = '';
+              this.innerText = ''; this.value = 'Свернуть'; }
+           else { this.parentNode.parentNode.getElementsByTagName('div')[1].getElementsByTagName('div')[0].style.display = 'none';
+              this.innerText = ''; this.value = 'Развернуть фильтры'; }">
+    </div>
+    <div class="alt2">
+      <div id="div_spoiler" style="display: none;">
+        Select columns for display/ Выберите колонки для отображения <br>
+  <%= render 'columns_to_render' %>
+      </div>
+    </div>
+  </div>
+
+<% end %>
+
+<br>
+<hr />

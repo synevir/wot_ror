@@ -1,0 +1,34 @@
+ @import "bootstrap";
+
+$lightGray: #999;
+$grayMediumLight: #eaeaea;
+/*------------------------------------------------*/
+
+.select_width_auto{
+     width:auto !important;
+}
+
+
+body {
+/*    padding-top: 60px;  */
+  background-image: asset-url("background.jpg");
+  background-color: #E6E8fA;
+}
+
+
+#filters_table{
+	.big_padding {
+	/* 	 color: green; */
+	     padding: 0px 10px 0px 10px;
+	  text-align: center;
+	}
+}
+
+#header_table {
+      width: 95%;
+	 margin: auto;
+     border: 0px solid red;
+}
+#i18n {
+  text-align: right;
+}

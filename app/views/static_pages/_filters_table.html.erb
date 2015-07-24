@@ -1,0 +1,25 @@
+<table id="filters_table" border="0" width="99%" align="center">
+    <tr>
+      <td class="big_padding"> <%= submit_tag(value = "Применить") %>  </td>
+      <td class="big_padding"> строк на страницу: <br>
+        <%= select_tag 'limit', options_for_select(ROWS_LIMIT.each{ |elem| [elem] },
+                       ROWS_LIMIT.first), class: 'select_width_auto' %>
+      </td>
+      <td class="big_padding"> виды танков: <br>
+        <%= select_tag 'type', options_for_select(PANZER_TYPES.each{ |elem| [elem] },
+                        PANZER_TYPES.last), class: 'select_width_auto' %>
+      </td>
+      <td class="big_padding"> уровень: <br>
+        <%= select_tag 'level', options_for_select(LEVELS.each{ |elem| [elem] },
+                        LEVELS.last), class: 'select_width_auto' %>
+      </td>
+      <td class="big_padding"> страна: <br>
+        <%= select_tag 'country', options_for_select(COUNTRIES.each{ |elem| [elem] },
+                        COUNTRIES.last), class: 'select_width_auto' %>
+      </td>
+      <td class="big_padding"> сортировать по: <br>
+        <%= select_tag 'order_by', options_for_select(COLUMNS.each{ |col| [col] },
+                        COLUMNS.last), class: 'select_width_auto' %>
+      </td>
+    </tr>
+ </table>
