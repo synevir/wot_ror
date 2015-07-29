@@ -1,16 +1,17 @@
-<p> The current date is <%= Time.now.strftime("%Y-%m-%d") %> | StaticPages#home</p>
 <table id="header_table">
   <tr>
-    <td> <%= image_tag('type59.png') %> </td>
+    <td>The current date is <%= Time.now.strftime("%Y-%m-%d") %> | StaticPages#home  </td>
     <td id="i18n">
-      <a href="/index.php?&lang=eng"><%= image_tag('eng.gif') %></a>
+      <a href="<%= root_path %>"> <%= image_tag('eng.gif') %> </a>
 	  &nbsp;
-	  <a href="/index.php?&lang=rus"><%= image_tag('rus.gif') %></a>
+	  <a href="<%= root_path %>"> <%= image_tag('rus.gif') %> </a>
     </td>
-
   </tr>
 </table>
 
+<div id="tank_img">
+  <%= image_tag('type59.png', id: 'redsquare') %>
+</div>
 
 <hr />
 <p>
@@ -23,37 +24,37 @@
   боевых машин и целесообразность преобретения той или иной машины, в зависимости от целей, которые поставил себе
   игрок
 </p>
-<hr />
 
-<% countries = ['CCCP', 'Германия', 'Франция', 'Китай', 'Япония', 'all'] %>
+<hr>
+<% countries = ['CCCP', 'Германия', 'Франция', 'Британия' 'Китай', 'Япония', 'all'] %>
 <% levels = (1..10).to_a.push('all') %>
 <% panzer_types  = ['lt', 'st', 'tt', 'pt', 'sau', 'all'] %>
 <% sort_order    = ['Asc', 'Desc'] %>
 <% rows_limit    = [10, 20, 40]    %>
 
+<%#@panzers = Panzer.all %>
+<%  %>
 
-<%= form_tag root_path, :method => 'get' do %>
+
+
+<%= form_tag root_path, :method => 'get', :id => 'select_form' do %>
   <%= render 'filters_table'  %>
-  <hr />
+  <hr>
   <div class="spoil">
-    <div class="smallfont">
-      <input type="button" value="Выбор колонок для вывода" class="input-button" id ="btn_spoiler"
-         onclick=
-          "if (this.parentNode.parentNode.getElementsByTagName('div')[1].getElementsByTagName('div')[0].style.display != '')
-              { this.parentNode.parentNode.getElementsByTagName('div')[1].getElementsByTagName('div')[0].style.display = '';
-              this.innerText = ''; this.value = 'Свернуть'; }
-           else { this.parentNode.parentNode.getElementsByTagName('div')[1].getElementsByTagName('div')[0].style.display = 'none';
-              this.innerText = ''; this.value = 'Развернуть фильтры'; }">
-    </div>
-    <div class="alt2">
-      <div id="div_spoiler" style="display: none;">
-        Select columns for display/ Выберите колонки для отображения <br>
-  <%= render 'columns_to_render' %>
-      </div>
-    </div>
-  </div>
+    <input type="button" value="Выбор колонок для вывода" class="input-button" id ="btn_spoiler">
 
+      <div id="div_spoiler" style="display: none;">
+        Select columns for display/ Выберите колонки для отображения
+        <%= render 'columns_to_render_table' %>
+      </div><!--id="div_spoiler"-->
+  </div><!--class="spoil"-->
+
+  <hr>
+  <br>* переключение сортировки (возрастание/убывание): клик по заголовку колонки
+  <br>** Цена на премиумную технику указана в игровом золоте
+
+  <%= render 'main_table' %>
+  
 <% end %>
 
-<br>
-<hr />
+

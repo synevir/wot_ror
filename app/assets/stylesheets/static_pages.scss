@@ -1,4 +1,4 @@
- @import "bootstrap";
+/*  @import "bootstrap"; */
 
 $lightGray: #999;
 $grayMediumLight: #eaeaea;
@@ -10,11 +10,34 @@ $grayMediumLight: #eaeaea;
 
 
 body {
-/*    padding-top: 60px;  */
+       padding-top: 0px;
   background-image: asset-url("background.jpg");
   background-color: #E6E8fA;
 }
 
+#header_table {
+      width: 100%;
+	 margin: auto;
+     border: 0px solid red;
+}
+#tank_img{
+	position: relative;
+border-style: solid;
+border-width: 0px;
+      height: 31px;
+       width:  90%;
+}
+
+#redsquare{
+  position: absolute;
+       top: 4px;
+      left: 8px;
+    height: 27px;
+     width: 90px;
+/*background-color:red;
+border-style:solid;
+border-width:1px;*/
+}
 
 #filters_table{
 	.big_padding {
@@ -24,11 +47,36 @@ body {
 	}
 }
 
-#header_table {
-      width: 95%;
-	 margin: auto;
-     border: 0px solid red;
+#select_columns_table{
+    text-align: left;
+    width: 99%;
+    margin: auto;
+    td{
+	    white-space: nowrap;
+  }
 }
+
+
+
+
 #i18n {
   text-align: right;
 }
+
+.spoil{
+	border: 1px solid red;
+}
+
+
+#main_table{
+  width: 97%;
+  margin: auto;
+  .first_row{
+	text-align: center;
+  }
+  .panzer_data{
+	text-align:center
+  }
+}
+
+

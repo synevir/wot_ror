@@ -5,6 +5,10 @@
         <%= select_tag 'limit', options_for_select(ROWS_LIMIT.each{ |elem| [elem] },
                        ROWS_LIMIT.first), class: 'select_width_auto' %>
       </td>
+      <td class="big_padding"> порядок сортировки: <br>
+        <%= select_tag 'sort', options_for_select(SORT.each{ |elem| [elem] },
+                       SORT.first), class: 'select_width_auto' %>
+      </td>
       <td class="big_padding"> виды танков: <br>
         <%= select_tag 'type', options_for_select(PANZER_TYPES.each{ |elem| [elem] },
                         PANZER_TYPES.last), class: 'select_width_auto' %>
@@ -18,8 +22,8 @@
                         COUNTRIES.last), class: 'select_width_auto' %>
       </td>
       <td class="big_padding"> сортировать по: <br>
-        <%= select_tag 'order_by', options_for_select(COLUMNS.each{ |col| [col] },
-                        COLUMNS.last), class: 'select_width_auto' %>
+        <%= select_tag 'order_by', options_for_select(@fields.each{ |col| [col] },
+                        'level'), class: 'select_width_auto' %>
       </td>
     </tr>
  </table>

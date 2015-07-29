@@ -1,0 +1,31 @@
+<!-- заменить на массив check_box  со статусом checked -->
+<%# columns_to_render = @panzers[0].attributes.each_key %>
+<%# columns_to_render = COLUMNS %>
+
+
+
+<table id='main_table' border="1" align="center">
+  <tr class="first_row">
+    <% @columns_to_render.each do |col| %>
+      <td>
+        <a id="main_table_<%= col %>" href="javascript:void(0)"
+                                   onclick="document.getElementsById('select_form').submit();
+                                   return false;">
+          <%= col %>
+        </a>
+      </td>
+    <% end %>
+  </tr>
+
+  <% @panzers.each do |panzer| %>
+    <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+
+      <% @columns_to_render.each do |col| %>
+        <td class="panzer_data">
+          <%= panzer[col.to_s]  %>
+        </td>
+       <% end %>
+
+     </tr>
+   <% end %>
+</table>
