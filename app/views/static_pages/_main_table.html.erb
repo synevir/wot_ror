@@ -1,31 +1,40 @@
-<!-- заменить на массив check_box  со статусом checked -->
-<%# columns_to_render = @panzers[0].attributes.each_key %>
-<%# columns_to_render = COLUMNS %>
+<% @columns_to_render = @columns_available_to_render %>
+<% @columns_default = ['name', 'country', 'level', 'xp', 'processed_fights',
+                     'skill_battle', 'profit_battle', 'profit_battle_premium']%>
+
+<br>* переключение сортировки (возрастание/убывание): клик по заголовку колонки
+<br>** Цена на премиумную технику указана в игровом золоте
 
 
 
 <table id='main_table' border="1" align="center">
-  <tr class="first_row">
-    <% @columns_to_render.each do |col| %>
+<!--первая строка таблицы - заголовки-->
+  <tr>
+    <% @c_tr.each do |col| %>
       <td>
-        <a id="main_table_<%= col %>" href="javascript:void(0)"
-                                   onclick="document.getElementsById('select_form').submit();
-                                   return false;">
-          <%= col %>
-        </a>
+        <div class="first_row">
+<!--         <%#= button_to col, static_pages_path %> -->
+<!--          <a id="main_table_<%= col %>" href="javascript:void(0)"
+onclick="document.getElementsById('select_form').submit();return false;">
+<%#= col %>
+
+          </a> -->
+          <b>
+          <label for="apply" class="header_label"> <%= col %></label>
+          </b>
+        </div>
       </td>
     <% end %>
   </tr>
 
+<!-- строки с информацией -->
   <% @panzers.each do |panzer| %>
     <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
-
-      <% @columns_to_render.each do |col| %>
-        <td class="panzer_data">
-          <%= panzer[col.to_s]  %>
+      <% @c_tr.each do |col| %>
+        <td class="<%= col %>_data">
+           <%= renderPanzerData(panzer[col.to_s]) %>
         </td>
-       <% end %>
-
-     </tr>
-   <% end %>
+      <% end %>
+    </tr>
+  <% end %>
 </table>

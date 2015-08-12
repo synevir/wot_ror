@@ -1,4 +1,4 @@
-/*  @import "bootstrap"; */
+/* @import "bootstrap"; */
 
 $lightGray: #999;
 $grayMediumLight: #eaeaea;
@@ -10,9 +10,14 @@ $grayMediumLight: #eaeaea;
 
 
 body {
-       padding-top: 0px;
+  padding-top: 0px;
   background-image: asset-url("background.jpg");
-  background-color: #E6E8fA;
+/*   background-color: #E6E8fA; */
+   background-color: #AFEEEE;
+}
+
+#i18n {
+  text-align: right;
 }
 
 #header_table {
@@ -20,7 +25,64 @@ body {
 	 margin: auto;
      border: 0px solid red;
 }
-#tank_img{
+
+
+#filters_table{
+  .big_padding {
+	text-align: center;
+	   padding: 0px 10px 0px 10px;
+ /* 	 color: green; */
+	}
+}
+
+#select_columns_table{
+    text-align: left;
+         width: 99%;
+        margin: auto;
+    td{
+	  white-space: nowrap;
+  }
+}
+
+
+
+#main_table{
+  width: 95%;
+  margin: auto;
+  text-align: center;
+  .first_row{
+	font-weight: bold;
+	padding: 5px;
+	margin: 10px;
+  }
+  .list_line_even{
+	background: #BDB76B;
+  }
+  label{
+	display: block;
+	margin: 0px;
+/* 	width: 150px; */
+	background: #bbb;
+ 	line-height: 50px;
+	text-align: center;
+	cursor: pointer;
+  }
+  label:hover{
+		background: #BDB76B;
+	}
+}
+
+.country_data, .name_data{
+	text-align: left;
+  }
+
+
+
+/* ------------------------------------ */
+/*           анимация танка             */
+/* ------------------------------------ */
+
+#anima_div{
 	position: relative;
 border-style: solid;
 border-width: 0px;
@@ -34,49 +96,5 @@ border-width: 0px;
       left: 8px;
     height: 27px;
      width: 90px;
-/*background-color:red;
-border-style:solid;
-border-width:1px;*/
 }
-
-#filters_table{
-	.big_padding {
-	/* 	 color: green; */
-	     padding: 0px 10px 0px 10px;
-	  text-align: center;
-	}
-}
-
-#select_columns_table{
-    text-align: left;
-    width: 99%;
-    margin: auto;
-    td{
-	    white-space: nowrap;
-  }
-}
-
-
-
-
-#i18n {
-  text-align: right;
-}
-
-.spoil{
-	border: 1px solid red;
-}
-
-
-#main_table{
-  width: 97%;
-  margin: auto;
-  .first_row{
-	text-align: center;
-  }
-  .panzer_data{
-	text-align:center
-  }
-}
-
-
+/* ------------------------------------ */

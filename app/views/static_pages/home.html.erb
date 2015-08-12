@@ -1,3 +1,4 @@
+<%=favicon_link_tag %>
 <table id="header_table">
   <tr>
     <td>The current date is <%= Time.now.strftime("%Y-%m-%d") %> | StaticPages#home  </td>
@@ -9,10 +10,9 @@
   </tr>
 </table>
 
-<div id="tank_img">
-  <%= image_tag('type59.png', id: 'redsquare') %>
+<div id="anima_div">
+  <%= image_tag('type59.png', id: 'redsquare', alt: 'type-59 image') %>
 </div>
-
 <hr />
 <p>
   Что это за сайт, что за цифры и зачем все это нужно  =>
@@ -24,37 +24,30 @@
   боевых машин и целесообразность преобретения той или иной машины, в зависимости от целей, которые поставил себе
   игрок
 </p>
-
-<hr>
-<% countries = ['CCCP', 'Германия', 'Франция', 'Британия' 'Китай', 'Япония', 'all'] %>
-<% levels = (1..10).to_a.push('all') %>
-<% panzer_types  = ['lt', 'st', 'tt', 'pt', 'sau', 'all'] %>
-<% sort_order    = ['Asc', 'Desc'] %>
-<% rows_limit    = [10, 20, 40]    %>
-
-<%#@panzers = Panzer.all %>
-<%  %>
+<hr />
 
 
-
-<%= form_tag root_path, :method => 'get', :id => 'select_form' do %>
-  <%= render 'filters_table'  %>
+<!-- ============================ -->
+  <%= render 'form_for_query' %>
+<!-- ============================ -->
   <hr>
-  <div class="spoil">
-    <input type="button" value="Выбор колонок для вывода" class="input-button" id ="btn_spoiler">
+  <% $where_hash = Hash.new %>
+  <% $where_hash[:type_]   = @panzers_type if (@panzers_type) && (@panzers_type != 'all')%>
+  <% $where_hash[:level]   = @level   if (@level)   && (@level != 'all') %>
+  <% $where_hash[:country] = @country if (@country) && (@country != 'all') %>
+  <% $where_str = createWhere($where_hash) %>
 
-      <div id="div_spoiler" style="display: none;">
-        Select columns for display/ Выберите колонки для отображения
-        <%= render 'columns_to_render_table' %>
-      </div><!--id="div_spoiler"-->
-  </div><!--class="spoil"-->
-
-  <hr>
-  <br>* переключение сортировки (возрастание/убывание): клик по заголовку колонки
-  <br>** Цена на премиумную технику указана в игровом золоте
-
-  <%= render 'main_table' %>
-  
-<% end %>
+  <% $order_str = ' ORDER BY ' + @order_by + ' ' + @sort + ', country'%>
+  <% $limit_str = ' LIMIT ' + @limit.to_s %>
+  <% $query = 'SELECT * FROM panzers ' + $where_str + $order_str + $limit_str%>
 
 
+
+<!--   <%# @panzers  = Panzer.where("type_=? AND level=?", @panzers_type, @level).order($order_string).limit(@limit) %> -->
+  <% @panzers  = Panzer.find_by_sql($query) %>
+
+  <% if @panzers.count > 0 %>
+    <%= render 'main_table' %>
+  <% else %>
+    <p>По данным критериям техника не найдена. Измените условия отбора.</p>
+  <% end %>

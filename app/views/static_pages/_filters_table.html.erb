@@ -1,29 +1,68 @@
 <table id="filters_table" border="0" width="99%" align="center">
     <tr>
-      <td class="big_padding"> <%= submit_tag(value = "Применить") %>  </td>
+      <td class="big_padding"> <%= submit_tag(value = "Применить", id: 'apply') %>  </td>
+
       <td class="big_padding"> строк на страницу: <br>
-        <%= select_tag 'limit', options_for_select(ROWS_LIMIT.each{ |elem| [elem] },
-                       ROWS_LIMIT.first), class: 'select_width_auto' %>
+        <%= if (@limit)
+              select_tag('limit_filter', options_for_select(ROWS_LIMIT.each{ |elem| [elem] },
+                         @limit), class: 'select_width_auto')
+            else
+              @limit = ROWS_LIMIT.second
+              select_tag('limit_filter', options_for_select(ROWS_LIMIT.each{ |elem| [elem] },
+                          @limit), class: 'select_width_auto')
+            end%>
       </td>
+
       <td class="big_padding"> порядок сортировки: <br>
-        <%= select_tag 'sort', options_for_select(SORT.each{ |elem| [elem] },
-                       SORT.first), class: 'select_width_auto' %>
+        <%= if @sort
+              @sort = 'DESC'
+              select_tag('sort_filter', options_for_select({ 'по возрастанию' => 'ASC', 'по убыванию' => 'DESC' },
+                          'DESC'), class: 'select_width_auto', disabled: true)
+            else
+              @sort = 'ASC'
+              select_tag('sort_filter', options_for_select({ 'по возрастанию' => 'ASC', 'по убыванию' => 'DESC' },
+                          'ASC'), class: 'select_width_auto')
+            end%>
       </td>
+
       <td class="big_padding"> виды танков: <br>
-        <%= select_tag 'type', options_for_select(PANZER_TYPES.each{ |elem| [elem] },
-                        PANZER_TYPES.last), class: 'select_width_auto' %>
+        <%= (@panzers_type) ?
+                      select_tag('type_filter', options_for_select(PANZER_TYPES.each{ |elem| [elem] },
+                                @panzers_type), class: 'select_width_auto')
+                            :
+                      select_tag('type_filter', options_for_select(PANZER_TYPES.each{ |elem| [elem] },
+                                PANZER_TYPES.first), class: 'select_width_auto') %>
       </td>
+
       <td class="big_padding"> уровень: <br>
-        <%= select_tag 'level', options_for_select(LEVELS.each{ |elem| [elem] },
-                        LEVELS.last), class: 'select_width_auto' %>
+        <% if @level %>
+          <%= select_tag 'level_filter', options_for_select(LEVELS.each{ |elem| [elem] },
+                        @level), class: 'select_width_auto' %>
+        <% else %>
+           <%= select_tag 'level_filter', options_for_select(LEVELS.each{ |elem| [elem] },
+                        LEVELS.first), class: 'select_width_auto' %>
+        <% end %>
       </td>
+
       <td class="big_padding"> страна: <br>
-        <%= select_tag 'country', options_for_select(COUNTRIES.each{ |elem| [elem] },
-                        COUNTRIES.last), class: 'select_width_auto' %>
+        <% if @country %>
+          <%= select_tag 'country_filter', options_for_select(COUNTRIES.each{ |elem| [elem] },
+                         @country), class: 'select_width_auto' %>
+        <% else %>
+          <%= select_tag 'country_filter', options_for_select(COUNTRIES.each{ |elem| [elem] },
+                         COUNTRIES.first), class: 'select_width_auto' %>
+        <% end %>
       </td>
+
       <td class="big_padding"> сортировать по: <br>
-        <%= select_tag 'order_by', options_for_select(@fields.each{ |col| [col] },
-                        'level'), class: 'select_width_auto' %>
+        <% if @order_by %>
+          <%= select_tag 'order_by_filter', options_for_select(@fields.each{ |col| [col] },
+                         @order_by), class: 'select_width_auto' %>
+        <% else %>
+          <%= @order_by = 'level'
+              select_tag 'order_by_filter', options_for_select(@fields.each{ |col| [col] },
+                         @order_by), class: 'select_width_auto' %>
+        <% end %>
       </td>
     </tr>
  </table>

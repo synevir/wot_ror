@@ -1,18 +1,37 @@
-<% c_o_l = @columns_to_render %>
+   <!-- массив чекбоксов -->
+<% @checkboxs = @columns_available_to_render %>
+<% @c_tr = @columns_default if @c_tr.size == 0%>
 
+
+<%= field_set_tag 'Select columns for display/ Выберите колонки для отображения' do %>
 <table border="0" id="select_columns_table">
   <tr>
     <td>
-      <% c_o_l.each_index do |i| %>
-        <label for="<%=cbName(c_o_l[i]) %>" >
-          <%= check_box_tag(cbName(c_o_l[i]), checked=true, class: 'chkBox') %>
-          <%= c_o_l[i] %>
+      <% @checkboxs.each_index do |i| %>
+        <label for="<%=@checkboxs[i] %>" >
+          <% if @c_tr.include?(@checkboxs[i]) %>
+            <%= check_box_tag(@checkboxs[i], 1, true, class: 'chkBox') %>
+          <% else %>
+            <%= check_box_tag(@checkboxs[i], 0, false, class: 'chkBox') %>
+          <% end %>
+          <%= @checkboxs[i] %>
         </label>
         <br>
-        <% if (i.succ % CBOX_IN_CEIL == 0) && (i.succ < c_o_l.size) %>
+        <% if (i.succ % CBOX_IN_CEIL == 0) && (i.succ < @checkboxs.size) %>
              </td> <td>
         <% end %>
       <% end %>
     </td>
   </tr>
 </table>
+<% end %>
+
+<!-- Для корректного отображения checkbox необходимы 3 параметра
+====================================================================
+check_box_tag('rock','rock musik', false) label_text_for_checkBox
+
+1 - определяет параметры `id` и `name`
+2 - определяет параметр `value`
+3 - определяет параметр `checked`
+
+# => <input type="checkbox" name="rock" id="rock" value="rock musik"> -->

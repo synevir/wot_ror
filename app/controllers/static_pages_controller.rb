@@ -1,21 +1,35 @@
 class StaticPagesController < ApplicationController
 
-  ::COUNTRIES     = ['CCCP', 'Германия', 'Британия', 'Франция', 'Китай', 'Япония', 'all']
-  ::LEVELS        = (1..10).to_a.push('all')
-  ::PANZER_TYPES  = ['lt', 'st', 'tt', 'pt', 'sau', 'all']
-  ::SORT_ORDER    = ['Asc', 'Desc']
+  ::COUNTRIES     = ['all', 'Британия', 'Германия', 'Китай', 'СССР','США', 'Франция', 'Япония']
+  ::LEVELS        = ['all', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  ::PANZER_TYPES  = ['all', 'lt', 'st', 'tt', 'pt', 'sau']
+  ::SORT_ORDER    = ['ASC', 'DESC']
   ::SORT          = ['по возрастанию', 'по убыванию']
   ::ROWS_LIMIT    = [10, 20, 40]
   ::CBOX_IN_CEIL  = 5
-#   ::COLUMNS       = ['name', 'country', 'price', 'processed_fights',
-#                      'hit_shot_effective_persent', 'level', 'premium']
-  ::IGNORE_FIELDS = ['id', 'created_at', 'updated_at', 'name2','zver','zapas_mass','to_top','country2']
+  ::IGNORE_RENDER = ['id', 'created_at', 'updated_at', 'name2','zver','zapas_mass','to_top',
+                     'country2', 'time_in_fight']
+  ::IGNORE_ORDER  = ['country', 'type_']
 
 	def home
-		@panzers = Panzer.all
-		@fields  = @panzers[0].attributes.each_key.to_a - IGNORE_FIELDS
-		@columns_to_render = @panzers[0].attributes.each_key.to_a - IGNORE_FIELDS
-	end
+	  @columns_available_to_render = Panzer.last.attributes.each_key.to_a - IGNORE_RENDER
+	  @columns_default = ['name', 'country', 'level', 'xp', 'processed_fights',
+                          'skill_battle', 'profit_battle', 'profit_battle_premium']
+# фильтры:
+	  @limit        = params[:limit_filter]
+	  @sort         = params[:sort_filter]
+      @panzers_type = params[:type_filter]
+	  @level        = params[:level_filter]
+	  @country      = params[:country_filter]
+	  @order_by     = params[:order_by_filter]
+	  @fields       = @columns_available_to_render - IGNORE_ORDER
+
+	  @c_tr = Array.new
+      @columns_available_to_render.each do |cbox|
+		@c_tr.push(cbox) if params[cbox]
+	  end
+
+    end
 
   def help
   end

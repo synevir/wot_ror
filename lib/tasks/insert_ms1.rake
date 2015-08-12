@@ -1,6 +1,6 @@
 namespace :db do
   desc "Add to database MC-1"
-  task create_MC1: :environment do
+  task create_ms1: :environment do
     mc1 = Panzer.create!(name: 'МС-1',
                       country: 'CCCP',
                      country2: 'CCCP',
@@ -11,6 +11,7 @@ namespace :db do
                            xp: 100,
                         massa: 5.6,
                    zapas_mass: 900,
+                      premium: 0,
                skill_research: 0,
                         price: 0,
                  price_repair: 0,

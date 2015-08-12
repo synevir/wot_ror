@@ -3,5 +3,7 @@ Rails.application.routes.draw do
    get 'static_pages/about'
 
   root 'static_pages#home'
+  
+  match 'static_pages', to: 'static_pages#home', via: 'post'
 
 end
