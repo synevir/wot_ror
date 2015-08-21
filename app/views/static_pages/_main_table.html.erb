@@ -12,16 +12,8 @@
   <tr>
     <% @c_tr.each do |col| %>
       <td>
-        <div class="first_row">
-<!--         <%#= button_to col, static_pages_path %> -->
-<!--          <a id="main_table_<%= col %>" href="javascript:void(0)"
-onclick="document.getElementsById('select_form').submit();return false;">
-<%#= col %>
-
-          </a> -->
-          <b>
-          <label for="apply" class="header_label"> <%= col %></label>
-          </b>
+        <div class="label_for">
+           <label for="btn_apply" class="header_label" id="label_for_<%= col %>"> <%= col %></label>
         </div>
       </td>
     <% end %>
@@ -31,7 +23,7 @@ onclick="document.getElementsById('select_form').submit();return false;">
   <% @panzers.each do |panzer| %>
     <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
       <% @c_tr.each do |col| %>
-        <td class="<%= col %>_data">
+        <td class="<%= createClass(col, @order_by) %>">
            <%= renderPanzerData(panzer[col.to_s]) %>
         </td>
       <% end %>

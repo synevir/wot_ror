@@ -42,5 +42,14 @@ module StaticPagesHelper
 	end
   end
 
+  def createClass(col, order_by)
+	if col == order_by
+	  return (col + '_data selected' )
+	else
+	  return (col +'_data')
+	end
+  end
+
+
 
 end

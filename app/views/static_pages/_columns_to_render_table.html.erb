@@ -1,4 +1,4 @@
-   <!-- массив чекбоксов -->
+<!--       массив чекбоксов     -->
 <% @checkboxs = @columns_available_to_render %>
 <% @c_tr = @columns_default if @c_tr.size == 0%>
 
@@ -8,15 +8,15 @@
   <tr>
     <td>
       <% @checkboxs.each_index do |i| %>
-        <label for="<%=@checkboxs[i] %>" >
           <% if @c_tr.include?(@checkboxs[i]) %>
-            <%= check_box_tag(@checkboxs[i], 1, true, class: 'chkBox') %>
+            <%= check_box_tag(@checkboxs[i], 1, true, class: 'checkbox chkBox') %>
           <% else %>
-            <%= check_box_tag(@checkboxs[i], 0, false, class: 'chkBox') %>
+            <%= check_box_tag(@checkboxs[i], 0, false, class: 'checkbox chkBox') %>
           <% end %>
-          <%= @checkboxs[i] %>
-        </label>
-        <br>
+          <label for="<%=@checkboxs[i] %>" class="lb_chk" title="<%=@checkboxs[i] %>">
+            <%= truncate(@checkboxs[i], length: 18) %>
+          </label>
+          <br><br>
         <% if (i.succ % CBOX_IN_CEIL == 0) && (i.succ < @checkboxs.size) %>
              </td> <td>
         <% end %>

@@ -6,7 +6,7 @@ class StaticPagesController < ApplicationController
   ::SORT_ORDER    = ['ASC', 'DESC']
   ::SORT          = ['по возрастанию', 'по убыванию']
   ::ROWS_LIMIT    = [10, 20, 40]
-  ::CBOX_IN_CEIL  = 5
+  ::CBOX_IN_CEIL  = 7
   ::IGNORE_RENDER = ['id', 'created_at', 'updated_at', 'name2','zver','zapas_mass','to_top',
                      'country2', 'time_in_fight']
   ::IGNORE_ORDER  = ['country', 'type_']
