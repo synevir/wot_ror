@@ -7,11 +7,11 @@ class AddColumnType < ActiveRecord::Migration
     add_column :panzers, :xp,				:integer, 	null:true
     add_column :panzers, :massa,			:decimal,	precision:4, scale:1, null:true
     add_column :panzers, :zapas_mass, 		:integer, 	null:true
-    add_column :panzers, :zver,   			:boolean, 	default:0
-    add_column :panzers, :ic,	  			:boolean, 	default:0
-    add_column :panzers, :patton, 			:boolean, 	default:0
-    add_column :panzers, :lend_liz,			:boolean, 	default:0
-    add_column :panzers, :not_for_sale, 	:boolean, 	default:0
+    add_column :panzers, :zver,   			:boolean, 	default:false
+    add_column :panzers, :ic,	  			:boolean, 	default:false
+    add_column :panzers, :patton, 			:boolean, 	default:false
+    add_column :panzers, :lend_liz,			:boolean, 	default:false
+    add_column :panzers, :not_for_sale, 	:boolean, 	default:false
     add_column :panzers, :premium,  		:boolean, 	null:true
     add_column :panzers, :skill_research,	:integer,	null:true
     add_column :panzers, :price,			:integer, 	null:true
