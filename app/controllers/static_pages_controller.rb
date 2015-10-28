@@ -18,18 +18,18 @@ class StaticPagesController < ApplicationController
 # фильтры:
 	  @limit        = params[:limit_filter]
 	  @sort         = params[:sort_filter]
-      @panzers_type = params[:type_filter]
+	  @panzers_type = params[:type_filter]
 	  @level        = params[:level_filter]
 	  @country      = params[:country_filter]
 	  @order_by     = params[:order_by_filter]
 	  @fields       = @columns_available_to_render - IGNORE_ORDER
 
 	  @c_tr = Array.new
-      @columns_available_to_render.each do |cbox|
+	  @columns_available_to_render.each do |cbox|
 		@c_tr.push(cbox) if params[cbox]
 	  end
 
-    end
+	end
 
   def help
   end

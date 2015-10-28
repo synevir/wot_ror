@@ -46,7 +46,7 @@ $(document).on "page:change", ->
   point_left = 8
   spend = 6000
   img_tank = '/assets/type59.png'
-  img_reverse ='/assets/type59_reverse.png'
+  img_reverse = '/assets/type59_reverse.png'
 #   img_tank = 'http://localhost:3000/assets/type59.png'
 #   img_tank = 'http://localhost:3000/assets/type59-0be63a10d364ee52bd1eff8a88329c8193610f1bdb8d57c090f465cef1b62262.png'
 #   img_reverse ='http://localhost:3000/assets/type59_reverse-ac590ff3f14f8debeead35e79f865c59d7769990b528d01c911a0c5ae89e3c33.png'
