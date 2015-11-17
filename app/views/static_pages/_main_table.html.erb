@@ -1,19 +1,17 @@
-<% @columns_to_render = @columns_available_to_render %>
-<% @columns_default = ['name', 'country', 'level', 'xp', 'processed_fights',
-                     'skill_battle', 'profit_battle', 'profit_battle_premium']%>
-
 <br>* переключение сортировки (возрастание/убывание): клик по заголовку колонки
 <br>** Цена на премиумную технику указана в игровом золоте
 
 
 
 <table id='main_table' border="1" align="center">
-<!--первая строка таблицы - заголовки-->
-  <tr>
-    <% @c_tr.each do |col| %>
+<!-- первая строка таблицы - заголовки колонок -->
+  <tr class="first_row">
+    <% @caption_tr.each do |col| %>
       <td>
-        <div class="label_for">
-           <label for="btn_apply" class="header_label" id="label_for_<%= col %>"> <%= col %></label>
+        <div class="label_for2">
+          <label for="btn_apply" class="header_label" id="label_for_<%= col %>">
+            <%= col %>
+          </label>
         </div>
       </td>
     <% end %>
@@ -23,7 +21,7 @@
   <% @panzers.each do |panzer| %>
     <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
       <% @c_tr.each do |col| %>
-        <td class="<%= createClass(col, @order_by) %>">
+        <td class="<%= createClass(col, @order_by, panzer[col]) %>">
            <%= renderPanzerData(panzer[col.to_s]) %>
         </td>
       <% end %>

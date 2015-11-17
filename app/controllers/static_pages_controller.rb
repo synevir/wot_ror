@@ -22,14 +22,48 @@ class StaticPagesController < ApplicationController
 	  @level        = params[:level_filter]
 	  @country      = params[:country_filter]
 	  @order_by     = params[:order_by_filter]
-	  @fields       = @columns_available_to_render - IGNORE_ORDER
+	  @fields_for_order = @columns_available_to_render - IGNORE_ORDER
 
-	  @c_tr = Array.new
-	  @columns_available_to_render.each do |cbox|
-		@c_tr.push(cbox) if params[cbox]
+# колонки для отображения в результирующей таблице
+# названия колонок в первой строке таблицы
+	  @c_tr       = Array.new
+	  @caption_tr = Array.new
+
+# базовый вариант массива колонок для вывода в главной таблице
+#	  @columns_available_to_render.each do |cbox|
+#  		@c_tr.push(cbox) if params[cbox]
+# 	  end
+
+# массив меток для чекбоксов определяется только при первой загрузке
+	  unless @checkboxs_caption
+		  @checkboxs_caption = Array.new
+		  @columns_available_to_render.each do |col|
+			 temp_caption = ColumnHeader.find_by(name: col)
+             temp_caption ? @checkboxs_caption.push(temp_caption.caption) : @checkboxs_caption.push(col)
+	      end
+	  else
+		  @debug_alert=' массив лабелов =' + @checkboxs_caption.size.to_s
 	  end
 
-	end
+# заполнение масива колонок для отображения в главной таблице
+# и массива названий колонок
+      if params.size > 2
+	    @columns_available_to_render.each do |cbox|
+ 		  if params[cbox]
+ 		    @c_tr.push(cbox)
+ 		    column_header = ColumnHeader.find_by(name: cbox)
+		    column_header ? @caption_tr.push(column_header.caption) : @caption_tr.push(cbox)
+ 		  end
+	    end
+	  else      # если страница загружается в первый раз
+		@c_tr = @columns_default if @c_tr.size == 0
+		@c_tr.each do |col|
+		  column_header = ColumnHeader.find_by(name: col)
+		  column_header ? @caption_tr.push(column_header.caption) : @caption_tr.push(col)
+		end
+	  end
+
+	end # end home
 
   def help
   end

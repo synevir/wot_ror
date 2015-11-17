@@ -31,8 +31,7 @@ $grayMediumLight: #eaeaea;
 body {
   padding-top: 0px;
   background-image: asset-url("background.jpg");
-/*   background-color: #E6E8fA; */
-   background-color: #AFEEEE;
+  background-color: #AFEEEE; /*#E6E8fA; */
 }
 
 #i18n { text-align: right;}
@@ -49,7 +48,6 @@ body {
     text-align: center;
     padding: 0px 10px 0px 10px;
 	white-space: nowrap;
- /* 	 color: green; */
   }
 }
 
@@ -61,10 +59,10 @@ body {
   text-align: left;
        width: 99%;
       margin: auto;
-    td{
-      white-space: nowrap;
-	  padding: 10px;
-	  border: solid 0px maroon;
+  td{
+    white-space: nowrap;
+	padding: 10px;
+	border: solid 0px maroon;
   }
 }
 
@@ -73,33 +71,30 @@ body {
 #main_table{
   width: 95%;
   margin: auto;
+  padding: 0;
   text-align: center;
   .first_row{
 	font-weight: bold;
-	padding: 5px;
-	margin: 10px;
-  }
-  .list_line_even{ background: #BDB76B; }
-  .label_for{
-	font-weight: bold;
-	margin: 0px;
-	padding: 0px;
-	color: black;/*#666699;*/
+	height: 3em;
+	td{
+      margin: 0px;
+	  text-align: center;
+      &:hover { background: #bbb; }
+	}
   }
   label{
-	display: block;
-/* 	background: #BDB76B; */
- 	line-height: 50px;
-	text-align: center;
-	cursor: pointer;
-	&:hover { background: #bbb;	}
+	  display: block;
+	  padding-top: 1px;
+	  padding-bottom: 1px;
+	  padding-left:  2px;
+	  padding-right: 2px;
+	  cursor: pointer;
   }
   .selected { font-weight: bold; }
-
+  .xp_data  { width: 4em; }
+  .list_line_even { background: #BDB76B; }
 }
-
-.country_data, .name_data{ text-align: left; }
-
+.country_data, .name_data { text-align: left; }
 
 
 /* ------------------------------------ */
@@ -187,7 +182,6 @@ border-width: 0px;
 
 /* Показываем получение фокуса. */
 .checkbox:focus + label:before {  box-shadow: 0 0 0 3px rgba(255,255,0,.5);}
-
 
 /* подсвечивание метки чекбокса при наведении */
 .lb_chk{

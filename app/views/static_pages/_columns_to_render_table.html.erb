@@ -1,6 +1,5 @@
 <!--       массив чекбоксов     -->
 <% @checkboxs = @columns_available_to_render %>
-<% @c_tr = @columns_default if @c_tr.size == 0%>
 
 
 <%= field_set_tag 'Select columns for display/ Выберите колонки для отображения' do %>
@@ -13,8 +12,12 @@
           <% else %>
             <%= check_box_tag(@checkboxs[i], 0, false, class: 'checkbox chkBox') %>
           <% end %>
-          <label for="<%=@checkboxs[i] %>" class="lb_chk" title="<%=@checkboxs[i] %>">
-            <%= truncate(@checkboxs[i], length: 18) %>
+<!-- ===========    базовый вариант меток для checkBox   =================
+<label for="<%=@checkboxs[i] %>" class="lb_chk" title="<%=@checkboxs[i] %>">
+<%#= truncate(@checkboxs[i], length: 18) %>
+  ========================================================================-->
+          <label for="<%=@checkboxs[i] %>" class="lb_chk" title="<%=@checkboxs_caption[i] %>">
+            <%= truncate(@checkboxs_caption[i], length: 16) %>
           </label>
           <br><br>
         <% if (i.succ % CBOX_IN_CEIL == 0) && (i.succ < @checkboxs.size) %>

@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150728212358) do
+ActiveRecord::Schema.define(version: 20151114210323) do
+
+  create_table "column_headers", force: :cascade do |t|
+    t.text     "name",       limit: 255
+    t.text     "caption",    limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
 
   create_table "panzers", force: :cascade do |t|
     t.string   "name",                       limit: 13

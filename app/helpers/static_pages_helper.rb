@@ -33,7 +33,7 @@ module StaticPagesHelper
 	end
   end
 
-  
+# отображение "+" "-" в булевских ячейках вместо "true" "false"
   def renderPanzerData(panzer_data)
 	if (panzer_data == false || panzer_data == true )
 	  return convertFalseTrue(panzer_data)
@@ -42,14 +42,23 @@ module StaticPagesHelper
 	end
   end
 
-  def createClass(col, order_by)
-	if col == order_by
-	  return (col + '_data selected' )
-	else
-	  return (col +'_data')
+
+# задание классов стилей для колонок главной таблицы
+  def createClass(col, order_by, value)
+	result = col
+	(col == order_by)? result += '_data selected' : result+='_data'
+    if value.class == Fixnum
+	  (value >= 0)? result += ' profit' : result += ' loss'
+	end
+	return(result)
+  end
+
+  def fillCaptions(columns_list)
+	return columns_list if columns_list.empty?
+	columns_list.each do |col|
+
 	end
   end
 
-
-
+ 
 end

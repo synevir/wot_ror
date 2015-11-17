@@ -40,7 +40,7 @@
 
       <td class="big_padding"> сортировать по: <br>
         <% @order_by = 'level' unless (@order_by) %>
-        <%= select_tag 'order_by_filter', options_for_select(@fields.each{ |col| [col] },
+        <%= select_tag 'order_by_filter', options_for_select(@fields_for_order.each{ |col| [col] },
                        @order_by), class: 'btn select_width_auto' %>
       </td>
     </tr>
