@@ -34,12 +34,12 @@ body {
   background-color: #AFEEEE; /*#E6E8fA; */
 }
 
-#i18n { text-align: right;}
 
 #header_table {
-   width: 100%;
+  width: 100%;
   margin: auto;
-   border: 0px solid red;
+  border: 0px solid red;
+  .right_logo { text-align: right;}
 }
 
 
@@ -102,20 +102,22 @@ body {
 /* ------------------------------------ */
 
 #anima_div{
-	position: relative;
+    position: relative;
 border-style: solid;
 border-width: 0px;
       height: 31px;
-       width:  90%;
+       width:  95%;
 }
 
-#redsquare{
+.move_img{
   position: absolute;
        top: 4px;
       left: 8px;
     height: 27px;
      width: 90px;
 }
+#redsquare{ visibility: visible; }
+#redsquare_reverse{ visibility: hidden; }
 /* ------------------------------------ */
 
 

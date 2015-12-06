@@ -1,19 +1,9 @@
-<%=favicon_link_tag %>
-<table id="header_table" border="0">
-  <tr>
-    <td>  <%= image_tag('rails_logo1.png', size:"90x50") %></td>
-    <td align="center" valign="center">
-      <div class="h1">
-         <h1> World of Tanks analize page </h1>
-      </div>
-    </td>
-    <td id="i18n">    <%= image_tag('wot_logo.png') %> </td>
-  </tr>
-</table>
 
 <div id="anima_div">
-  <%= image_tag('type59.png', id: 'redsquare', alt: 'type-59 image') %>
+  <%= image_tag('type59.png', id: 'redsquare', class: 'move_img', alt: 'type-59 image') %>
+  <%= image_tag('type59_reverse.png', id: 'redsquare_reverse', class: 'move_img', alt: 'type-59 reverse image') %>
 </div>
+
 <hr />
 <p>
   Что это за сайт, что за цифры и зачем все это нужно  =>

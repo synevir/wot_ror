@@ -14,7 +14,8 @@ class StaticPagesController < ApplicationController
 	def home
 	  @columns_available_to_render = Panzer.last.attributes.each_key.to_a - IGNORE_RENDER
 	  @columns_default = ['name', 'country', 'level', 'xp', 'processed_fights',
-                          'skill_battle', 'profit_battle', 'profit_battle_premium']
+                          'wins_persent', 'skill_battle', 'profit_battle',
+                          'profit_battle_premium']
 # фильтры:
 	  @limit        = params[:limit_filter]
 	  @sort         = params[:sort_filter]
@@ -68,5 +69,3 @@ class StaticPagesController < ApplicationController
   def help
   end
 end
-
-
