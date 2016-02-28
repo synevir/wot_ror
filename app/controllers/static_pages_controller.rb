@@ -11,24 +11,24 @@ class StaticPagesController < ApplicationController
                      'country2', 'time_in_fight']
   ::IGNORE_ORDER  = ['country', 'type_']
 
-	def home
-	  @columns_available_to_render = Panzer.last.attributes.each_key.to_a - IGNORE_RENDER
-	  @columns_default = ['name', 'country', 'level', 'xp', 'processed_fights',
+  def home
+    @columns_available_to_render = Panzer.last.attributes.each_key.to_a - IGNORE_RENDER
+    @columns_default = ['name', 'country', 'level', 'xp', 'processed_fights',
                           'wins_persent', 'skill_battle', 'profit_battle',
                           'profit_battle_premium']
 # фильтры:
-	  @limit        = params[:limit_filter]
-	  @sort         = params[:sort_filter]
-	  @panzers_type = params[:type_filter]
-	  @level        = params[:level_filter]
-	  @country      = params[:country_filter]
-	  @order_by     = params[:order_by_filter]
-	  @fields_for_order = @columns_available_to_render - IGNORE_ORDER
+    @limit        = params[:limit_filter]
+    @sort         = params[:sort_filter]
+    @panzers_type = params[:type_filter]
+    @level        = params[:level_filter]
+    @country      = params[:country_filter]
+    @order_by     = params[:order_by_filter]
+    @fields_for_order = @columns_available_to_render - IGNORE_ORDER
 
 # колонки для отображения в результирующей таблице
 # названия колонок в первой строке таблицы
-	  @c_tr       = Array.new
-	  @caption_tr = Array.new
+    @c_tr       = Array.new
+    @caption_tr = Array.new
 
 # базовый вариант массива колонок для вывода в главной таблице
 #	  @columns_available_to_render.each do |cbox|
@@ -36,35 +36,35 @@ class StaticPagesController < ApplicationController
 # 	  end
 
 # массив меток для чекбоксов определяется только при первой загрузке
-	  unless @checkboxs_caption
-		  @checkboxs_caption = Array.new
-		  @columns_available_to_render.each do |col|
-			 temp_caption = ColumnHeader.find_by(name: col)
-             temp_caption ? @checkboxs_caption.push(temp_caption.caption) : @checkboxs_caption.push(col)
-	      end
-	  else
-		  @debug_alert=' массив лабелов =' + @checkboxs_caption.size.to_s
-	  end
+    unless @checkboxs_caption
+      @checkboxs_caption = Array.new
+      @columns_available_to_render.each do |col|
+        temp_caption = ColumnHeader.find_by(name: col)
+        temp_caption ? @checkboxs_caption.push(temp_caption.caption) : @checkboxs_caption.push(col)
+      end
+    else
+      @debug_alert=' массив лабелов =' + @checkboxs_caption.size.to_s
+    end
 
 # заполнение масива колонок для отображения в главной таблице
 # и массива названий колонок
-      if params.size > 2
-	    @columns_available_to_render.each do |cbox|
- 		  if params[cbox]
- 		    @c_tr.push(cbox)
- 		    column_header = ColumnHeader.find_by(name: cbox)
-		    column_header ? @caption_tr.push(column_header.caption) : @caption_tr.push(cbox)
- 		  end
-	    end
-	  else      # если страница загружается в первый раз
-		@c_tr = @columns_default if @c_tr.size == 0
-		@c_tr.each do |col|
-		  column_header = ColumnHeader.find_by(name: col)
-		  column_header ? @caption_tr.push(column_header.caption) : @caption_tr.push(col)
-		end
-	  end
+    if params.size > 2
+      @columns_available_to_render.each do |cbox|
+        if params[cbox]
+          @c_tr.push(cbox)
+          column_header = ColumnHeader.find_by(name: cbox)
+          column_header ? @caption_tr.push(column_header.caption) : @caption_tr.push(cbox)
+        end
+      end
+    else      # если страница загружается в первый раз
+      @c_tr = @columns_default if @c_tr.size == 0
+      @c_tr.each do |col|
+        column_header = ColumnHeader.find_by(name: col)
+        column_header ? @caption_tr.push(column_header.caption) : @caption_tr.push(col)
+      end
+    end
 
-	end # end home
+  end    # end of `def home`
 
   def help
   end

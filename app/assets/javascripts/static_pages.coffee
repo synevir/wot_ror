@@ -1,21 +1,21 @@
 moveTanks = (point_right, point_left, tank_width, spend) ->
   $('#redsquare').animate { left: point_right }, spend
-    # --- turn tank in right point ---
+    # --- turn tank in the right point ---
   $('#redsquare').animate { left: point_right+60, 'width': tank_width * 0.05 }, 'slow', ->
     $('#redsquare_reverse').css('left', point_right+60)
     $('#redsquare').css('visibility','hidden')
     $('#redsquare_reverse').css('visibility','visible')
     $('#redsquare_reverse').css('width', tank_width * 0.05)
 
-      # --- turn tank_revers in right point ---
+      # --- turn tank_revers in the right point ---
     $('#redsquare_reverse').animate { left: '-=60', 'width': tank_width }, 'slow'
     $('#redsquare_reverse').animate { left: point_left }, spend
-      # --- turn tank_revers in left point ---
+      # --- turn tank_revers in the left point ---
     $('#redsquare_reverse').animate { left: '+=60', 'width': tank_width * 0.05 }, 'slow', ->
       $('#redsquare').css('left', point_left + 60)
       $('#redsquare_reverse').css('visibility','hidden')
       $('#redsquare').css('visibility','visible')
-        # --- turn tank in right point ---
+        # --- turn tank in the right point ---
       $('#redsquare').animate { left: '-=60', 'width': tank_width }, 'slow'
       return
 
