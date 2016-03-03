@@ -1,4 +1,4 @@
-World of Tanks farm page
+World of Tanks farm page analize
 
 * Ruby version: 2.2.0
 
