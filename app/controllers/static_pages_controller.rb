@@ -31,9 +31,9 @@ class StaticPagesController < ApplicationController
     @caption_tr = Array.new
 
 # базовый вариант массива колонок для вывода в главной таблице
-#	  @columns_available_to_render.each do |cbox|
-#  		@c_tr.push(cbox) if params[cbox]
-# 	  end
+#  @columns_available_to_render.each do |cbox|
+#    @c_tr.push(cbox) if params[cbox]
+#  end
 
 # массив меток для чекбоксов определяется только при первой загрузке
     unless @checkboxs_caption
