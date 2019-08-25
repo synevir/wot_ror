@@ -1,7 +1,12 @@
 World of Tanks farm page analize
 
+Application web address: http://wotpg.herokuapp.com/
+
+
 * Ruby version: 2.2.0
 
 * Rails: 4
 
-* DataBase: MySQL
+* DataBase:
+  develop: MySQL
+  production: PostgreSQL
