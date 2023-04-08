@@ -8,5 +8,5 @@ Application web address: http://wotpg.herokuapp.com/
 * Rails: 4
 
 * DataBase:
-  develop: MySQL
-  production: PostgreSQL
+  - develop: MySQL 
+  - production: PostgreSQL
